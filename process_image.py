@@ -25,7 +25,7 @@ for entity in entities:
             for attrib in entity['Attributes']:
                 if attrib['Type']=='TEST_VALUE':
                     cases.append(attrib['Text'])
-    #TODO expand to make this more robust
+    #TODO expand to make this more robust -- right now buisness logic defines min to be only relevant value
     output[patient_id] = min(cases)
 
 print(output)
