@@ -9,9 +9,10 @@ Previous work to extract LVEF ([Kim 2017](https://www.sciencedirect.com/science/
 
 ### How it works
 **Input:** _Sample medical chart image (OCR boxes shown for visualization)_
-<img src="/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/images/sample_1.png"/>
+![Alt text](images/sample_1.png?raw=true)
+
 **Output:** _A patient's LVEF value_
-![](/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/Images/output1.png)
+![Alt text](images/output1.png?raw=true)
 
 ### How to use it
 * Add an image to the image folder
