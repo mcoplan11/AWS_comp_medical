@@ -4,11 +4,10 @@ from utils import list_of_lvef_entities, pre_process_text
 import json
 from numpyencoder import NumpyEncoder
 from datetime import datetime
-import os
-
+from pathlib import Path
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
-SAVE_OUTPUT_FOLDER = '/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs'
+SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
 
 session = boto3.Session(profile_name='mitch_test')
 client = session.client(service_name='comprehendmedical', verify=False)
@@ -30,12 +29,15 @@ def extract_lvef(ocr_image_path: str = 'test'):
     # result = client.detect_entities(Text=text)
     text = ''
     with open(ocr_image_path) as f:
-        content = f.read()
+        text = f.read()
         f.close()
     # result = client.detect_entities(Text=text)
     if text == '':
         print('!!! document is blank !!!')
+        return
     text = pre_process_text(text)
+    if text == '':
+        return
     result = client.detect_entities_v2(Text=text)
     entities = result['Entities']
     cases = []
@@ -52,8 +54,9 @@ def extract_lvef(ocr_image_path: str = 'test'):
 
 
 if __name__ == '__main__':
-    # ocr_image()
-    extract_lvef('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts/test.txt')
+    image_path = '/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts/test.txt'
+    #image_path = ocr_image()
+    extract_lvef(image_path)
     print(output)
     output_file = SAVE_OUTPUT_FOLDER / str(date_time + '.json')
     with open(output_file, 'w') as f:

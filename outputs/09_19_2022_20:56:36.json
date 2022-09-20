@@ -1,0 +1,16 @@
+{
+    "/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts/test.txt": [
+        {
+            "Score": 0.9999865293502808,
+            "Value": 33.0
+        },
+        {
+            "Score": 0.9996091723442078,
+            "Value": 23.0
+        },
+        {
+            "Score": 0.9999954700469971,
+            "Value": 48.0
+        }
+    ]
+}

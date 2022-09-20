@@ -15,9 +15,9 @@ Previous work to extract LVEF ([Kim 2017](https://www.sciencedirect.com/science/
 ![Alt text](images/output1.png?raw=true)
 
 ## How to use it
-* Add an image to the image folder
+* Add an image to the `image` folder
 
-* Run python `process_image.py --image_name`
+* Run python `process_image.py --{your_image_name}`
 
 * Examine the output json data to identify a patient's LVEF
 

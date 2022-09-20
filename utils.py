@@ -9,6 +9,7 @@ regex_keywords = '|'.join(f'({p})' for p in regex_keywords)
 
 list_of_lvef_entities = [
     'LEFT VENTRICULAR EJECTION FRACTION'
+    , 'LEFT VENTRICULAR EJECTION FRATION'
     , 'LVEF'
     , 'SYSTOLIC FUNCTION'
     , 'SYSTOLIC DYSFUNCTION'

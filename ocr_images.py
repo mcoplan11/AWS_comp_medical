@@ -3,10 +3,11 @@ import boto3
 import sagemaker
 import trp
 import color
+from pathlib import Path
 
-SAVE_IMAGE_TEXTS_FOLDER = '/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts'
+
+SAVE_IMAGE_TEXTS_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts')
 bucket = sagemaker.Session().default_bucket()
-
 
 
 #OCR Image to get text
@@ -49,5 +50,5 @@ def ocr_image(image_path: str = '', textractObjectName: str = ''):
         with open(file_output, 'w') as f:
             for line in pageText:
                 f.write(f"{line}\n")
-
+    return file_output
 
