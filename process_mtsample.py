@@ -10,7 +10,7 @@ import json
 from numpyencoder import NumpyEncoder
 from datetime import datetime
 from pathlib import Path
-
+from tqdm import tqdm
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
 SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
 
@@ -20,7 +20,21 @@ client = session.client(service_name='comprehendmedical', verify=False)
 global output
 output = {}
 
-regex_keywords = '|'.join(f'({p})' for p in list_of_lvef_entities)
+list_of_lvef_entities_query = [
+    'LEFT VENTRICULAR EJECTION FRACTION'
+    , 'LEFT VENTRICULAR EJECTION FRATION'
+    , 'LVEF'
+    , 'SYSTOLIC FUNCTION'
+    , 'SYSTOLIC DYSFUNCTION'
+    , ' EF '
+    , 'LVSD'
+    , 'LEFT VENTRICULAR SYSTOLIC DYSFUNCTION'
+    , 'LEFT VENTRICULAR SYSTOLIC FUNCTION'
+    , 'EJECTION FRACTION'
+]
+
+
+regex_keywords = '|'.join(f'({p})' for p in list_of_lvef_entities_query)
 
 
 def extract_lvef_text(text: str = '', patient_id: int = 0):
@@ -38,7 +52,7 @@ def extract_lvef_text(text: str = '', patient_id: int = 0):
     for entity in entities:
         case = {}
         if entity['Text'].upper() in list_of_lvef_entities:
-            if entity['Attributes']:
+            if 'Attributes' in entity:
                 for attrib in entity['Attributes']:
                     if attrib['Type'] == 'TEST_VALUE':
                         case['Value'] = attrib['Text']
@@ -63,7 +77,8 @@ for item in transcription:
 print(f'number of docs: {len(filter_text)}')
 
 
-for i, text in enumerate(filter_text):
+for i, text in tqdm(enumerate(filter_text)):
+    print(i)
     extract_lvef_text(text=text, patient_id=i)
 
 
