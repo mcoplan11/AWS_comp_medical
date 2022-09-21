@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/AWS_comp_medical.iml" filepath="$PROJECT_DIR$/.idea/AWS_comp_medical.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Extraction of LVEF from medical chart text.iml" filepath="$PROJECT_DIR$/.idea/Extraction of LVEF from medical chart text.iml" />
     </modules>
   </component>
 </project>

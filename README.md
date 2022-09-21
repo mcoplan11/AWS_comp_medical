@@ -1,4 +1,4 @@
-# AWS_comp_medical
+# Extraction of LVEF from medical chart text
 
 ## Introduction
 One of the most under-utilized data assets in healthcare is free text written in clinical notes.  Developing systems to better harvest and then operationalize this natural language data could result in earlier interventions and decreased healthcare costs. While highly data rich, this text is notoriously difficult to understand and process. 
