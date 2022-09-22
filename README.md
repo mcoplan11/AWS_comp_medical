@@ -22,6 +22,9 @@ Process by image:
 
 * Examine the output json data to identify a patient's LVEF
 
+* Clinical evaluations for healthcare quality, billing codes, and medical interventions can be completed on the appropriate patients identified 
+
+
 Process by csv:
 * Add a csv to the `dataset` folder (Clinical text column must have the header `transcription`)
 
