@@ -45,4 +45,4 @@ for patient_id, LVEF in LVEFs.items():
         n += 1
         ids.append(patient_id)
 
-print(f'Identified {13} patients with LVEF >= 35.  These patient_ids should are recommended for clinical chart review: \n {ids}')
+print(f'Identified {n} patients with LVEF >= 35.  These patient_ids should are recommended for clinical chart review: \n {ids}')
