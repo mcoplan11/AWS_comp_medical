@@ -5,6 +5,8 @@ import json
 from numpyencoder import NumpyEncoder
 from datetime import datetime
 from pathlib import Path
+import argparse
+#TODO USE THIS
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
 SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
