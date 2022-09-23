@@ -16,7 +16,8 @@ list_of_lvef_entities = [
 #filter out common keywords/phrases that lead to false positives
 regex_keywords = [
     r'LVEF less than (\d||d\d)% is considered NYHA',
-    r'LEFT VENTRICULAR EJECTION FRACTION in the range of 50% to 70% is normal',
+    r'normal lvef is in the 55-70%',
+    r'LEFT VENTRICULAR EJECTION FRACTION in the range of 53% to 70%',
 ]
 regex_keywords = '|'.join(f'({p})' for p in regex_keywords)
 

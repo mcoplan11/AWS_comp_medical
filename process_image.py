@@ -6,7 +6,10 @@ from numpyencoder import NumpyEncoder
 from datetime import datetime
 from pathlib import Path
 import argparse
-#TODO USE THIS
+
+parser = argparse.ArgumentParser()
+parser.add_argument("image_file_path", required=False)
+args = parser.parse_args()
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
 SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
@@ -57,7 +60,7 @@ def extract_lvef(ocr_image_path: str = 'test'):
 
 if __name__ == '__main__':
     image_path = '/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts/test.txt'
-    #image_path = ocr_image()
+    #image_path = ocr_image(args)
     extract_lvef(image_path)
     print(output)
     output_file = SAVE_OUTPUT_FOLDER / str(date_time + '.json')
