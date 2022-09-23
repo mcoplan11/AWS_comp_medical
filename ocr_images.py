@@ -5,7 +5,6 @@ import trp
 import color
 from pathlib import Path
 
-
 SAVE_IMAGE_TEXTS_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/image_texts')
 bucket = sagemaker.Session().default_bucket()
 

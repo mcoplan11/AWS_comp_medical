@@ -1,5 +1,7 @@
 import re
+from pathlib import Path
 
+SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
 list_of_lvef_entities = [
     'LEFT VENTRICULAR EJECTION FRACTION'
     , 'LEFT VENTRICULAR EJECTION FRATION'

@@ -6,13 +6,14 @@ from numpyencoder import NumpyEncoder
 from datetime import datetime
 from pathlib import Path
 import argparse
+from utils import SAVE_OUTPUT_FOLDER
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("image_file_path", required=False)
 args = parser.parse_args()
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
-SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
 
 session = boto3.Session(profile_name='mitch_test')
 client = session.client(service_name='comprehendmedical', verify=False)

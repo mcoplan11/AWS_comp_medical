@@ -8,15 +8,14 @@ import boto3
 import pandas as pd
 from numpyencoder import NumpyEncoder
 from tqdm import tqdm
-
-from utils import list_of_lvef_entities, pre_process_text
+import post_process_results_and_analysis
+from utils import list_of_lvef_entities, pre_process_text, SAVE_OUTPUT_FOLDER
 
 parser = argparse.ArgumentParser()
 parser.add_argument("dataset_file_path", required=False)
 args = parser.parse_args()
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
-SAVE_OUTPUT_FOLDER = Path('/Users/Mitchell_Coplan/PycharmProjects/AWS_comp_medical/outputs')
 
 session = boto3.Session(profile_name='mitch_test')
 client = session.client(service_name='comprehendmedical', verify=False)
@@ -88,3 +87,6 @@ if __name__ == '__main__':
     output_file = SAVE_OUTPUT_FOLDER / str(date_time + '.json')
     with open(output_file, 'w') as f:
         json.dump(output, f, indent=4, sort_keys=True, cls=NumpyEncoder)
+
+    #run some analysis
+    post_process_results_and_analysis.run()
