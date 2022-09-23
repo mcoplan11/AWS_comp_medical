@@ -28,7 +28,7 @@ Process by image:
 Process by csv:
 * Add a csv to the `dataset` folder (Clinical text column must have the header `transcription`)
 
-* Run python `process_csv.py --{your_dataset_name}`
+* Run python `process_dataset.py --{your_dataset_name}`
 
 * Examine the output json data to identify a patient's LVEF
 
