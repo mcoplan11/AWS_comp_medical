@@ -6,13 +6,15 @@ from pathlib import Path
 from utils import SAVE_OUTPUT_FOLDER
 from numpyencoder import NumpyEncoder
 from datetime import datetime
+# import pandas as pd
+import matplotlib.pyplot as plt
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
 
 
 
 def run():
-    list_of_results_files = glob.glob(str(SAVE_OUTPUT_FOLDER) + '/*')
+    list_of_results_files = glob.glob(str(SAVE_OUTPUT_FOLDER) + '/[0-9]' + '*')
     latest_results_file = max(list_of_results_files, key=os.path.getctime)
 
     print(f'latest_results_file: {latest_results_file}')
@@ -40,21 +42,56 @@ def run():
                 LVEFs[patient_id] = LVEF
 
     output_file = SAVE_OUTPUT_FOLDER / str('post_process_' + date_time + '.json')
-    with open(output_file, 'w') as f:
-        json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
+    # with open(output_file, 'w') as f:
+    #     json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
 
     n = 0
-    m = 0
-    ids = []
+    mild = 0
+    mod = 0
+    sev = 0
+    ids_mod = []
+    ids_sev = []
     for patient_id, LVEF in LVEFs.items():
-        m+=1
-        if LVEF <= 35.0:
-            n += 1
-            ids.append(patient_id)
+        n+=1
+        if LVEF <= 51.0 and LVEF >= 41.0:
+            mild += 1
+        if LVEF <= 40.0 and LVEF >= 30.0:
+            mod += 1
+            ids_mod.append(patient_id)
+        if LVEF < 30.0:
+            sev += 1
+            ids_sev.append(patient_id)
+    '41% to 51%	30% to 40%	Below 30%'
+    # 'I50.30' #Unspecified diastolic (congestive) heart failure
+    print('Scanned 5000 medical charts for LVEF')
+    print(f'Found LVEF for {n} patients')
+    print(f'Found LVEF for {mild} patients with mildly abnormal results (41% to 51%)')
+    print(f'Found LVEF for {mod} patients with moderately abnormal results (30% to 40%)')
+    print(f'Found LVEF for {sev} patients with severely abnormal results (Below 30%)')
 
-    print(f'Found LVEF for {m} patients')
     print(
-        f'Identified {n} patients with LVEF >= 35.  These patient_ids should are have the following billing code (I50.90) and are recommended for clinical chart review: \n {ids}')
+        f'The following patients_id\'s are recommended for clinical chart review to determine if billing codes (I50.20) need to be added: \n {ids_mod}')
+
+
+    print(
+        f'The following patients_id\'s are recommended for clinical chart review to determine if complex cardiac implantable electronic devices needed and billing codes (I50.20) need to be added: \n {ids_sev}')
+
+
+
+    # creating the bar plot of data
+    data = {"Total LVEF\'s found": n, "Mildly abnormal LVEF": mild, "Moderately abnormal LVEF": mod,
+            "Severely abnormal LVEF": sev}
+    courses = ["Total LVEF\'s found", "Mildly abnormal LVEF", "Moderately abnormal LVEF", "Severely abnormal LVEF"]
+    values = [n, mild, mod, sev]
+
+    fig = plt.figure(figsize=(10, 5))
+    plt.bar(courses, values, color='maroon',
+            width=0.4)
+
+    plt.xlabel("Number of Patients")
+    plt.ylabel("LVEF value")
+    plt.title("Number of Patients with LVEF identified")
+    plt.show()
 
 if __name__ == '__main__':
     run()
