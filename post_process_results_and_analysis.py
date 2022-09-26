@@ -6,7 +6,6 @@ from pathlib import Path
 from utils import SAVE_OUTPUT_FOLDER
 from numpyencoder import NumpyEncoder
 from datetime import datetime
-# import pandas as pd
 import matplotlib.pyplot as plt
 
 date_time = datetime.now().strftime("%m_%d_%Y_%H:%M:%S")
@@ -42,8 +41,8 @@ def run():
                 LVEFs[patient_id] = LVEF
 
     output_file = SAVE_OUTPUT_FOLDER / str('post_process_' + date_time + '.json')
-    # with open(output_file, 'w') as f:
-    #     json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
+    with open(output_file, 'w') as f:
+        json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
 
     n = 0
     mild = 0
@@ -79,8 +78,6 @@ def run():
 
 
     # creating the bar plot of data
-    data = {"Total LVEF\'s found": n, "Mildly abnormal LVEF": mild, "Moderately abnormal LVEF": mod,
-            "Severely abnormal LVEF": sev}
     courses = ["Total LVEF\'s found", "Mildly abnormal LVEF", "Moderately abnormal LVEF", "Severely abnormal LVEF"]
     values = [n, mild, mod, sev]
 
