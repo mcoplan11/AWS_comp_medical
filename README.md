@@ -41,7 +41,7 @@ Process by csv:
 * Clinical evaluations for healthcare quality, billing codes, and medical interventions can be completed on the appropriate patients identified 
 
 ### How it was developed
-We fine tuned the data extraction based on this [synthetic dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions).  This dataset contains 5000 discharge summaries from various specialties. LVEF values for each patient were manulally extracted by a clinical annotator.  We then created regex code and decision tree logic to augment the findings returned from [Amazon Comprehend Medical](https://docs.aws.amazon.com/comprehend-medical/index.html) in order to improve our results for our specific use case.
+We fine-tuned the data extraction based on this [synthetic dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions).  This dataset contains 5000 discharge summaries from various specialties. LVEF values for each patient were manually extracted by a clinical annotator.  We then created regex code and decision tree logic to augment the findings returned from [Amazon Comprehend Medical](https://docs.aws.amazon.com/comprehend-medical/index.html) in order to improve our results for our specific use case.
 
 ### Citations
 Matthew Kahn, Antony D Grayson, Parminder S Chaggar, Marie J Ng Kam Chuen, Alison Scott, Carol Hughes, Niall G Campbell, Primary care heart failure service identifies a missed cohort of heart failure patients with reduced ejection fraction, European Heart Journal, Volume 43, Issue 5, 1 February 2022, Pages 405–412, https://doi.org/10.1093/eurheartj/ehab629
