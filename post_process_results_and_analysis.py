@@ -39,10 +39,10 @@ def run():
             if value < LVEF:
                 LVEF = value
                 LVEFs[patient_id] = LVEF
-
-    output_file = SAVE_OUTPUT_FOLDER / str('post_process_' + date_time + '.json')
-    with open(output_file, 'w') as f:
-        json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
+    #
+    # output_file = SAVE_OUTPUT_FOLDER / str('post_process_' + date_time + '.json')
+    # with open(output_file, 'w') as f:
+    #     json.dump(LVEFs, f, indent=4, sort_keys=True, cls=NumpyEncoder)
 
     n = 0
     mild = 0
@@ -78,16 +78,13 @@ def run():
 
 
     # creating the bar plot of data
-    courses = ["Total LVEF\'s found", "Mildly abnormal LVEF", "Moderately abnormal LVEF", "Severely abnormal LVEF"]
-    values = [n, mild, mod, sev]
+    courses = ["Mildly abnormal (symptoms with physical activity)", "Moderately abnormal", "Severely abnormal (life-threatening complications)"]
+    values = [mild, mod, sev]
 
-    fig = plt.figure(figsize=(10, 5))
-    plt.bar(courses, values, color='maroon',
-            width=0.4)
 
-    plt.xlabel("Number of Patients")
-    plt.ylabel("LVEF value")
-    plt.title("Number of Patients with LVEF identified")
+    # plt.xlabel("Number of Patients")
+    plt.ylabel("Number of Patients")
+    plt.title("Number of Patients with LVEF Identified")
     plt.show()
 
 if __name__ == '__main__':
