@@ -25,7 +25,10 @@ Previous work to automate extraction of LVEF ([Kim 2017](https://www.sciencedire
 
 **_A summary of findings and clinical/billing implications_**
 
-![Alt text](images/output_analysis.png?raw=true)
+
+| ![Alt text](images/output_analysis.png?raw=true) |
+|-|
+
 ## How to use it
 Process by image:
 * Add an image to the `image` folder
