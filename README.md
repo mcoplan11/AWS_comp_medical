@@ -13,11 +13,15 @@ Previous work to automate extraction of LVEF ([Kim 2017](https://www.sciencedire
 ### Input: 
 
 **_Sample medical chart image (OCR boxes shown for visualization)_**
-![Alt text](images/sample_1.png?raw=true)
+
+| ![Alt text](images/sample_1.png?raw=true) |
+|-|
 
 ### Output:
 **_A json file with all extracted patient's LVEF values_**
-![Alt text](images/output1.png?raw=true)
+
+| ![Alt text](images/output1.png?raw=true) |
+|-|
 
 **_A summary of findings and clinical/billing implications_**
 
