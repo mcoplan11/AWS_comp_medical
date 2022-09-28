@@ -19,8 +19,8 @@ The output is a json file containing the extract LVEF for each patient/image and
 
 _Example output summary_
 
-![Alt text](images/output_analysis.png?raw=true)
-
+| ![Alt text](images/output_analysis.png?raw=true) |
+|-|
 
 ## How we built it
 We utilized a rule based extraction engine paired with Amazon Medical Comprehend and Textract. For any images being process, we used Textract to OCR the image and saved the results as a text file. We then developed code to take the text data and extract the LVEF value through Amazon Medical Comprehend.  In order to evaluate the effectiveness of this solution, we tested the extraction on this [synthetic dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions) after manually labeling the correct LVEF for each patient.  We then fine-tuned our pre and post processing functions based on the results we output from the synthetic dataset. 
