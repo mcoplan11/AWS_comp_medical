@@ -8,7 +8,8 @@ import boto3
 import pandas as pd
 from numpyencoder import NumpyEncoder
 from tqdm import tqdm
-import post_process_results_and_analysis
+import post_process_results
+import result_analysis
 from utils import list_of_lvef_entities, pre_process_text, SAVE_OUTPUT_FOLDER
 
 parser = argparse.ArgumentParser()
@@ -88,5 +89,6 @@ if __name__ == '__main__':
     with open(output_file, 'w') as f:
         json.dump(output, f, indent=4, sort_keys=True, cls=NumpyEncoder)
 
-    #run some analysis
-    post_process_results_and_analysis.run()
+    #post process results and print analysis
+    post_process_results.run()
+    result_analysis.run()
