@@ -15,7 +15,7 @@ We have built a system to extract the LVEF from medical charts and then provide 
 
 2. Input a csv with one column containing text from medical notes
 
-The output is a json file containing the extract LVEF for each patient/image and summary statistics on the results.
+The output is a json file containing the extracted LVEF for each patient/image and summary statistics on the results.
 
 _Example output summary_
 
@@ -23,16 +23,16 @@ _Example output summary_
 |-|
 
 ## How we built it
-We utilized a rule based extraction engine paired with Amazon Medical Comprehend and Textract. For any images being process, we used Textract to OCR the image and saved the results as a text file. We then developed code to take the text data and extract the LVEF value through Amazon Medical Comprehend.  In order to evaluate the effectiveness of this solution, we tested the extraction on this [synthetic dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions) after manually labeling the correct LVEF for each patient.  We then fine-tuned our pre and post processing functions based on the results we output from the synthetic dataset. 
+We utilized a rule based extraction engine paired with Amazon Medical Comprehend and Textract. For any images being process, we used Textract to OCR the image and saved the results as a text file. We then developed a pre-processing function to parse the text data prior to sending it to Amazon Medical Comprehend in order to extract the LVEF.  We then parsed the results from Amazon Medical Comprehend through a custom post-processing function to get clean data.   In order to evaluate the effectiveness of this solution, we tested the extraction on this [synthetic dataset](https://www.kaggle.com/datasets/tboyle10/medicaltranscriptions) after manually labeling the correct LVEF for each patient.  We then fine-tuned our pre and post processing functions based on the results we output from the synthetic dataset. 
 
 ## Challenges we ran into
-Amazon Medical Comprehend is does an excellent job at extracting information for text. However, medical charts do not contain clean text data.  They consist of duplicate (copied over from previous encounters) notes and often have informational data in the chart. For example, if a medical note contained the text `Left ventricular ejection fraction in the range of 53% to 70% is considered normal`, LVEF might be extracted as `53% to 70%`. A human annotator of this sentence would likely understand that this is referring to LVEF in general, not the specific patient.  We were able to mediate this challenge through the use of a pre-processing function where these types of sentences where filtered out.  This function utilizes regex lookup queries and was developed through the error analysis of the synthetic dataset.
+Amazon Medical Comprehend is does an excellent job at extracting information for text. However, medical charts do not contain clean text data.  They consist of duplicate (copied over from previous encounters) notes and often have informational data in the chart. For example, if a medical note contained the text `Left ventricular ejection fraction in the range of 53% to 70% is considered normal`, LVEF might be extracted as `53% to 70%`. A human annotator of this sentence would likely understand that this is referring to LVEF in general, not the specific patient.  We were able to mediate this challenge through the use of a pre-processing function where these types of sentences where filtered out.  This function utilizes custom developed regex lookup queries and was developed through the error analysis of the synthetic dataset.
 
 ## Accomplishments that we're proud of
 Utilizing our synthetic dataset of 5000 patient discharges, we were able to successfully extract the LVEF for 93 patients.  Additionally, 23 of those patients had LVEF values below 40% which means they would qualify for the I50.20 ICD billing code and 7 of those patients has severely reduced LVEF and might quality for cardiac implantable electronic devices.
 
 
-When the above results are extrapolated to a larger health system seeing around 250,000 patients a year assuming similar ratios to ([Kahn 2022](https://doi.org/10.1093/eurheartj/ehab629)), we can estimate this would have led to a health system and their patients:
+When the above results are extrapolated to a larger health system seeing around 250,000 patients a year assuming similar ratios to ([Kahn 2022](https://doi.org/10.1093/eurheartj/ehab629)), we can estimate this solution's impact to health system and its patients:
 
 * **~40 patients receiving life-saving surgery to get cardiac devices**   ((7/5000) X 250,000 X 27% X 47%)
 * **Additional ~$4.1 million in hospital revenue** ((23/5000) X 250,000 X 47% X 240 USD) [billing codes] + ($100,000 X 40) [cardiac surgeries] ([HHS](https://aspe.hhs.gov/sites/default/files/private/pdf/252376/Table1C.pdf))
@@ -45,7 +45,7 @@ Amazon Medical Comprehend is a powerful tool. However, its best use cases in hea
 ## What's next for Extraction of LVEF from medical chart text
 We recommend eventually licensing this technology out to large providers networks.  The consolidation of the healthcare market in the past 10-20 years has led to the rise of fragmented databases and coding documentation. Unfortunately, patients have suffered from this by "slipping through the cracks" and not receiving they care they need.  This technology could be used to rapidly iterate through provider's proprietary healthcare databases to extract structured LVEF data and obtain novel insight to their heart failure patient population. A refined list of patients with LVEF values would improve billing codes and identify patients that need referral to cardiology for advanced heart failure treatment, who would otherwise be forgotten.
 
-A next logical step for this project would be to enter a partnership with a larger healthcare provider network.  This would give us the opportunity to tune our code on a real dataset and allow the health system to receive novel insights to their heart failure cohort. The results would also likely lead to an academic publication so we would target academic health systems for this partnership. I used to work for the cardiology department at a large healthcare system.  I plan to utilize my connections there in order to set up a partnership.
+A next logical step for this project would be to enter a partnership with a larger healthcare provider network.  This would give us the opportunity to tune our code on a real dataset and allow the health system to receive novel insights to their heart failure cohort. The results would also likely lead to an academic publication so we would target academic health systems for this partnership. I used to work for the cardiology department at a large healthcare system and plan to utilize my connections to set up a partnership.
 
 Advanced heart failure patients often result in complex surgical intervention which is generally how large health systems generate a large share of their revenue.  **This solution improves the quality of patient care and healthcare systems are financially incentivized to implement it.**
 
