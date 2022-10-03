@@ -35,7 +35,7 @@ Utilizing our synthetic dataset of 5000 patient discharges, we were able to succ
 When the above results are extrapolated to a larger health system seeing around 250,000 patients a year assuming similar ratios to ([Kahn 2022](https://doi.org/10.1093/eurheartj/ehab629)), we can estimate this solution's impact to health system and its patients:
 
 * **~40 patients receiving life-saving surgery to get cardiac devices**   ((7/5000) X 250,000 X 27% X 47%)
-* **Additional ~$4.1 million in hospital revenue** ((23/5000) X 250,000 X 47% X 240 USD) [billing codes] + ($100,000 X 40) [cardiac surgeries] ([HHS](https://aspe.hhs.gov/sites/default/files/private/pdf/252376/Table1C.pdf))
+* **Additional ~$2.1 million in hospital revenue** ((23/5000) X 250,000 X 47% X 240 USD) [billing codes] + ($50,000 X 40) [cardiac surgeries] ([HHS](https://aspe.hhs.gov/sites/default/files/private/pdf/252376/Table1C.pdf))
 
 
 
